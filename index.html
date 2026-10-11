@@ -2236,6 +2236,12 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 .gline,.h-div,.h-div-dot,.rsvp-ornament,.rsvp-corner,.loc-medallion,.padrino-icon,.fam-medal-icon,.cd-ring-svg,.btn-gold,.vinyl-tonearm,.h-arch svg{animation:goldGlow 4.5s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){.lbl,.h-we,.h-date-day,.ne-author,.ft-orn,.cal-month-title,.padrino-rol,.fam-group-title,.gline,.h-div,.h-div-dot,.rsvp-ornament,.rsvp-corner,.loc-medallion,.padrino-icon,.fam-medal-icon,.cd-ring-svg,.btn-gold,.vinyl-tonearm,.h-arch svg{animation:none}}
 
+
+/* ── HERO SIN PARTÍCULAS: se apagan las del hero y las globales mientras se ve la portada ── */
+#hPart{display:none!important}
+#globalPart{transition:opacity .7s ease}
+body.in-hero #globalPart{opacity:0}
+
 /* ── FUNDIDO UNIFORME ENTRE SECCIONES ── cada sección se superpone 140px sobre la anterior
    y su borde superior se disuelve con máscara (curva de 9 paradas): cruce suave sin importar el contraste */
 .main-wrap{--seam:140px}
@@ -3958,6 +3964,13 @@ function toast(msg) {
   hero.addEventListener('pointerleave',function(){tx=ty=0;q();});
   window.addEventListener('deviceorientation',function(e){if(e.gamma==null)return;tx=Math.max(-14,Math.min(14,e.gamma*.5));ty=Math.max(-14,Math.min(14,(e.beta-45)*.4));q();},{passive:true});
   window.addEventListener('scroll',function(){sc=window.scrollY||0;if(sc<1200)q();},{passive:true});
+})();
+
+/* Partículas globales ocultas mientras la portada está en pantalla */
+(function(){
+  var hero=document.getElementById('hero'); if(!hero)return;
+  function chk(){document.body.classList.toggle('in-hero',(window.scrollY||0)<hero.offsetHeight*.75);}
+  chk(); window.addEventListener('scroll',chk,{passive:true}); window.addEventListener('resize',chk);
 })();
 </script>
 </body>

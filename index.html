@@ -2346,6 +2346,12 @@ body.in-hero #globalPart{opacity:0}
   mask-composite:intersect}
 #neruda .sec-bg,#rsvp .sec-bg{opacity:.7}
 
+
+/* ── GIROSCOPIO EN TODA LA INVITACIÓN: paralaje + inclinación 3D suave ── */
+#countdown,#location,#calendar,#itinerary,#gifts,#album,#rsvp{perspective:1100px}
+.gy{transition:translate .35s cubic-bezier(.22,.8,.3,1),rotate .45s cubic-bezier(.22,.8,.3,1);backface-visibility:hidden}
+@media(prefers-reduced-motion:reduce){.gy{translate:none!important;rotate:none!important}}
+
 /* ── FUNDIDO UNIFORME ENTRE SECCIONES ── cada sección se superpone 140px sobre la anterior
    y su borde superior se disuelve con máscara (curva de 9 paradas): cruce suave sin importar el contraste */
 .main-wrap{--seam:140px}
@@ -4098,6 +4104,7 @@ function toast(msg) {
     if(glow)glow.style.transform='translate(calc(-50% + '+(cx*.5)+'px),calc(-50% + '+(cy*.5)+'px))';
     if(cnt)cnt.style.transform='translate('+(-cx*.35)+'px,'+(-cy*.35)+'px)';
     for(var i=0;i<arcs.length;i++)arcs[i].style.translate=(cx*(i?-.6:.6))+'px '+(cy*.3)+'px';
+    if(window.__gyroTick)window.__gyroTick(cx,cy);
     raf=(Math.abs(tx-cx)+Math.abs(ty-cy)>.05)?requestAnimationFrame(loop):0;
   }
   function q(){if(!raf)raf=requestAnimationFrame(loop);}
@@ -4167,6 +4174,34 @@ function toast(msg) {
   if(!p||!a)return;
   function sync(){var d=p.getAttribute('d');if(d){a.setAttribute('d',d);b&&b.setAttribute('d',d);gl.forEach(function(g){g&&g.setAttribute('d',d);});}}
   sync(); new MutationObserver(sync).observe(p,{attributes:true,attributeFilter:['d']});
+})();
+
+/* Giroscopio extendido: cada bloque se desplaza a su propia profundidad e inclina en 3D (solo los visibles) */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var spec=[ /* selector, desplazamiento, inclinación (grados), sentido */
+    ['.cd-ring-grid',.55,5,1],['#neruda .ne-quote',.3,0,-1],['#neruda .ne-author',.45,0,-1],
+    ['.loc-card',.4,6,1],['.cal-month',.45,7,1],['#tlSvg',.35,0,1],
+    ['.tl-row-inner',.7,4,1],['#lvGiftBody',.8,9,1],['.alb-qr-frame',.5,8,1],['.rsvp-card',.3,4,1]
+  ],items=[];
+  spec.forEach(function(sp){document.querySelectorAll(sp[0]).forEach(function(el,i){
+    el.classList.add('gy');
+    var alt=(sp[0]==='.tl-row-inner'&&el.closest('.tl-row')&&el.closest('.tl-row').dataset.side==='right')?-1:1;
+    items.push({el:el,d:sp[1],t:sp[2],k:sp[3]*alt,on:true});
+  });});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){var it=items.find(function(x){return x.el===e.target;});if(it)it.on=e.isIntersecting;});},{rootMargin:'120px'});
+    items.forEach(function(it){it.on=false;io.observe(it.el);});
+    /* respaldo: si IO no reporta (algunos visores), todo activo */
+    setTimeout(function(){if(items.every(function(i){return !i.on;}))items.forEach(function(i){i.on=true;});},2500);
+  }
+  window.__gyroTick=function(cx,cy){
+    for(var i=0;i<items.length;i++){var it=items[i];if(!it.on)continue;
+      var x=cx*it.d*it.k,y=cy*it.d;
+      it.el.style.translate=x.toFixed(2)+'px '+y.toFixed(2)+'px';
+      if(it.t){var m=Math.min(1,Math.hypot(cx,cy)/18);if(m<.01){it.el.style.rotate='none';continue;}it.el.style.rotate=(cy/18).toFixed(3)+' '+(-cx/18*it.k).toFixed(3)+' 0 '+(m*it.t).toFixed(2)+'deg';}
+    }
+  };
 })();
 </script>
 </body>

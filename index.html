@@ -2117,7 +2117,21 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
   transform-origin:left center;will-change:transform,opacity;
   filter:drop-shadow(0 0 4px rgba(212,0,103,.55));
 }
-  </style>
+  
+/* ── FUNDIDO UNIFORME ENTRE SECCIONES ── cada sección se superpone 140px sobre la anterior
+   y su borde superior se disuelve con máscara (curva de 9 paradas): cruce suave sin importar el contraste */
+.main-wrap{--seam:140px}
+.main-wrap > section:not(#hero), .main-wrap > footer{
+  position:relative;
+  margin-top:calc(var(--seam) * -1);
+  padding-top:calc(var(--seam) + 56px) !important;
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,.03) calc(var(--seam)*.125),rgba(0,0,0,.1) calc(var(--seam)*.25),rgba(0,0,0,.22) calc(var(--seam)*.375),rgba(0,0,0,.4) calc(var(--seam)*.5),rgba(0,0,0,.6) calc(var(--seam)*.625),rgba(0,0,0,.78) calc(var(--seam)*.75),rgba(0,0,0,.92) calc(var(--seam)*.875),#000 var(--seam));
+          mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,.03) calc(var(--seam)*.125),rgba(0,0,0,.1) calc(var(--seam)*.25),rgba(0,0,0,.22) calc(var(--seam)*.375),rgba(0,0,0,.4) calc(var(--seam)*.5),rgba(0,0,0,.6) calc(var(--seam)*.625),rgba(0,0,0,.78) calc(var(--seam)*.75),rgba(0,0,0,.92) calc(var(--seam)*.875),#000 var(--seam));
+}
+.main-wrap > section, .main-wrap > footer{padding-bottom:calc(56px + var(--seam) * .5) !important}
+.main-wrap > section:not(#hero){border-top:0 !important}
+#footer{border-top:0 !important}
+</style>
 </head>
 <body>
 

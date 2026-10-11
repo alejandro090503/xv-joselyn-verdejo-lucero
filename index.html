@@ -2317,6 +2317,20 @@ body.in-hero #globalPart{opacity:0}
 @keyframes tlShineRun{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
 @media(prefers-reduced-motion:reduce){.tl-shine,.btn-gold,.rsvp-btn,.btn-gold::after,.rsvp-btn::after,.gline::after,.loc-card,.alb-qr-frame,.rsvp-card,.cal-month,.gf-card{animation:none!important}}
 
+
+/* ── S DEL ITINERARIO: glow premium con los mismos colores del trazo (rosa ↔ dorado) ──
+   capas anchas y translúcidas con el degradado #tlGrad (sin filtros: no repinta al hacer scroll) */
+.tl-svg-path{filter:none!important}
+.tl-glow{fill:none;stroke:url(#tlGrad);stroke-linecap:round;pointer-events:none}
+.tl-glow-1{stroke-width:6;opacity:.38}
+.tl-glow-2{stroke-width:12;opacity:.17;animation:tlGlowBreath 4.5s ease-in-out infinite}
+.tl-glow-3{stroke-width:22;opacity:.08;animation:tlGlowBreath 4.5s ease-in-out infinite -2.2s}
+.tl-mask-wide{stroke:#fff!important;stroke-width:26!important}
+@keyframes tlGlowBreath{0%,100%{opacity:.08}50%{opacity:.22}}
+.tl-glow-2{animation-name:tlGlowBreath2}
+@keyframes tlGlowBreath2{0%,100%{opacity:.14}50%{opacity:.3}}
+@media(prefers-reduced-motion:reduce){.tl-glow{animation:none}}
+
 /* ── FUNDIDO UNIFORME ENTRE SECCIONES ── cada sección se superpone 140px sobre la anterior
    y su borde superior se disuelve con máscara (curva de 9 paradas): cruce suave sin importar el contraste */
 .main-wrap{--seam:140px}
@@ -2764,7 +2778,11 @@ body.in-hero #globalPart{opacity:0}
         </filter>
       </defs>
       <path class="tl-svg-bg"   id="tlPathBg"/>
+      <path class="tl-glow tl-glow-3" id="tlGlow3" mask="url(#tlMaskW)"/>
+      <path class="tl-glow tl-glow-2" id="tlGlow2" mask="url(#tlMaskW)"/>
+      <path class="tl-glow tl-glow-1" id="tlGlow1" mask="url(#tlMaskW)"/>
       <path class="tl-svg-path" id="tlPath"/>
+      <mask id="tlMaskW" maskUnits="userSpaceOnUse"><use href="#tlPath" class="tl-mask-wide"/></mask>
       <mask id="tlMask" maskUnits="userSpaceOnUse"><use href="#tlPath" class="tl-mask-use"/></mask>
       <path class="tl-shine" id="tlShine" pathLength="100" mask="url(#tlMask)"/>
       <path class="tl-shine tl-shine-2" id="tlShine2" pathLength="100" mask="url(#tlMask)"/>
@@ -4125,9 +4143,9 @@ function toast(msg) {
 
 /* La S del itinerario: los destellos copian el trazo que dibuja el scroll */
 (function(){
-  var p=document.getElementById('tlPath'),a=document.getElementById('tlShine'),b=document.getElementById('tlShine2');
+  var p=document.getElementById('tlPath'),a=document.getElementById('tlShine'),b=document.getElementById('tlShine2'),gl=['tlGlow1','tlGlow2','tlGlow3'].map(function(i){return document.getElementById(i);});
   if(!p||!a)return;
-  function sync(){var d=p.getAttribute('d');if(d){a.setAttribute('d',d);b&&b.setAttribute('d',d);}}
+  function sync(){var d=p.getAttribute('d');if(d){a.setAttribute('d',d);b&&b.setAttribute('d',d);gl.forEach(function(g){g&&g.setAttribute('d',d);});}}
   sync(); new MutationObserver(sync).observe(p,{attributes:true,attributeFilter:['d']});
 })();
 </script>

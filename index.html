@@ -2338,13 +2338,18 @@ body.in-hero #globalPart{opacity:0}
 
 
 /* ── FONDOS FLORALES ROSA/ORO (assets de xv-layla-y-litzy / xv-itzel) con viñeta difuminada ── */
-#neruda,#calendar,#family,#rsvp,#album{isolation:isolate}
+#neruda,#countdown,#calendar,#location,#gifts,#family,#rsvp,#album{isolation:isolate}
 .sec-bg{position:absolute;inset:-2px;z-index:-1;pointer-events:none;background-position:center;background-size:cover;background-repeat:no-repeat;opacity:.6;
   -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 14%,#000 86%,transparent 100%),linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.4) 9%,#000 20%,#000 80%,rgba(0,0,0,.4) 91%,transparent 100%);
   -webkit-mask-composite:destination-in;
   mask-image:linear-gradient(to right,transparent 0%,#000 14%,#000 86%,transparent 100%),linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.4) 9%,#000 20%,#000 80%,rgba(0,0,0,.4) 91%,transparent 100%);
   mask-composite:intersect}
 #neruda .sec-bg,#rsvp .sec-bg{opacity:.7}
+/* tinta rosa+oro: la de fondo completo más tenue para que el texto respire; las de esquina alternan lado */
+.sec-bg-bg-ink-2{opacity:.38!important}
+.sec-bg-bg-ink-1{opacity:.62!important;background-position:top center!important}
+.sec-bg-bg-ink-3{opacity:.7!important;background-position:top right!important}
+#gifts .sec-bg-bg-ink-3,#countdown .sec-bg-bg-ink-3{transform:scaleX(-1)}
 
 
 /* ── GIROSCOPIO EN TODA LA INVITACIÓN: paralaje + inclinación 3D suave ── */
@@ -2519,7 +2524,7 @@ body.in-hero #globalPart{opacity:0}
 
 <!-- ═══════════════ 1B. MENSAJE ══════════════════ -->
 <section id="neruda">
-  <div class="sec-bg" aria-hidden="true" style="background-image:url('assets/bg-floral-oro.jpg')"></div>
+  <div class="sec-bg sec-bg-bg-ink-1" aria-hidden="true" style="background-image:url('assets/bg-ink-1.jpg')"></div>
   <div class="ne-orn-top" aria-hidden="true">
     <span class="ne-line"></span>
     <span class="ne-dot">✦</span>
@@ -2541,6 +2546,7 @@ body.in-hero #globalPart{opacity:0}
 
 <!-- ═══════════════ 2. CUENTA REGRESIVA ══════════════ -->
 <section id="countdown">
+  <div class="sec-bg sec-bg-bg-ink-3" aria-hidden="true" style="background-image:url('assets/bg-ink-3.jpg')"></div>
   <!-- ondas decorativas superiores -->
   <div class="cd-wave-top" aria-hidden="true">
     <svg viewBox="0 0 800 50" preserveAspectRatio="none">
@@ -2619,6 +2625,7 @@ body.in-hero #globalPart{opacity:0}
 
 <!-- ═══════════════ 3. UBICACIONES ═══════════════════ -->
 <section id="location">
+  <div class="sec-bg sec-bg-bg-ink-1" aria-hidden="true" style="background-image:url('assets/bg-ink-1.jpg')"></div>
   <span class="lbl">¿Dónde y cuándo?</span>
   <h2 class="ttl">La Celebración</h2>
   <div class="gline"></div>
@@ -2713,7 +2720,7 @@ body.in-hero #globalPart{opacity:0}
 
 <!-- ═══════════════ 4. CALENDAR ══════════════════════ -->
 <section id="calendar">
-  <div class="sec-bg" aria-hidden="true" style="background-image:url('assets/bg-floral-2.jpg')"></div>
+  <div class="sec-bg sec-bg-bg-ink-2" aria-hidden="true" style="background-image:url('assets/bg-ink-2.jpg')"></div>
   <span class="lbl">No lo olvides</span>
   <h2 class="ttl" style="font-size:26px">Guarda la Fecha</h2>
   <div class="gline"></div>
@@ -2838,6 +2845,7 @@ body.in-hero #globalPart{opacity:0}
 
 <!-- ═══════════════ 7. MESA DE REGALOS ═══════════════ -->
 <section id="gifts">
+  <div class="sec-bg sec-bg-bg-ink-3" aria-hidden="true" style="background-image:url('assets/bg-ink-3.jpg')"></div>
   <div class="lv-rain" id="lvRain" aria-hidden="true"></div>
   <div class="lv-stage">
     <span class="lbl">Tu presencia es mi mejor regalo</span>
@@ -2891,7 +2899,7 @@ body.in-hero #globalPart{opacity:0}
 
 <!-- ═══════════════ 8. ÁLBUM COMPARTIDO ══════════════ -->
 <section id="album">
-  <div class="sec-bg" aria-hidden="true" style="background-image:url('assets/bg-gracia.jpg')"></div>
+  <div class="sec-bg sec-bg-bg-ink-1" aria-hidden="true" style="background-image:url('assets/bg-ink-1.jpg')"></div>
   <span class="lbl">Captura cada momento</span>
   <h2 class="ttl">Álbum Compartido</h2>
   <div class="gline"></div>
@@ -2929,7 +2937,7 @@ body.in-hero #globalPart{opacity:0}
 
 <!-- ═══════════════ 10. FAMILIA · CONSTELACIÓN DE MEDALLONES ═══════════════ -->
 <section id="family">
-  <div class="sec-bg" aria-hidden="true" style="background-image:url('assets/bg-floral-1.jpg')"></div>
+  <div class="sec-bg sec-bg-bg-ink-2" aria-hidden="true" style="background-image:url('assets/bg-ink-2.jpg')"></div>
   <span class="lbl">Con amor de</span>
   <h2 class="ttl">Mis Padres y Padrinos</h2>
   <div class="gline"></div>
@@ -2985,7 +2993,7 @@ body.in-hero #globalPart{opacity:0}
 
 <!-- ═══════════════ 12. RSVP ═════════════════════════ -->
 <section id="rsvp">
-  <div class="sec-bg" aria-hidden="true" style="background-image:url('assets/bg-floral-oro.jpg')"></div>
+  <div class="sec-bg sec-bg-bg-ink-3" aria-hidden="true" style="background-image:url('assets/bg-ink-3.jpg')"></div>
   <div class="rsvp-card">
     <!-- Esquinas decorativas -->
     <svg class="rsvp-corner rsvp-corner--tl" viewBox="0 0 52 52" fill="none" aria-hidden="true"><path d="M2 50 L2 2 L50 2" stroke="var(--gold)" stroke-width=".9" opacity=".6"/><circle cx="2" cy="2" r="2.5" fill="var(--gold)" opacity=".5"/></svg>

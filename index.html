@@ -40,16 +40,16 @@
 /* ── TOKENS ───────────────────────────────────────────── */
 :root {
   --olive:        #8a0043;             /* vino profundo (acento fuerte, uso reducido) */
-  --olive-lt:     #d6d3ba;             /* highlight claro (crema cálido) */
+  --olive-lt:     #fcebf2;             /* highlight claro (crema cálido) */
   --olive-accent: #d40067;             /* rosa polvo medio (uso amplio) */
   --olive-dim:    rgba(138,0,67,0.19);
   --cream:        #3a1c0f;             /* marrón cálido rico — texto principal (menos vino) */
   --ink:          #FFFFFF;             /* blanco puro — bg principal */
-  --ink2:         #FAF6E7;             /* cream cálido — bg secundario */
-  --ink3:         #d6d3ba;             /* beige cálido — bg terciario */
+  --ink2:         #FFF7FA;             /* cream cálido — bg secundario */
+  --ink3:         #FDEFF5;             /* beige cálido — bg terciario */
   --gold:         #b8922a;             /* dorado para acentos (uso amplio) */
   --gold-dark:    #8a6812;             /* dorado oscuro (contraste texto) */
-  --taupe:        #D4C5B2;             /* taupe para acentos */
+  --taupe:        #f3cfe0;             /* taupe para acentos */
   --terra:        #a04b32;             /* terracota cálido (nuevo acento) */
   --spring:       cubic-bezier(.34,1.56,.64,1);
   --smooth:       cubic-bezier(.25,.46,.45,.94);
@@ -99,10 +99,10 @@ section{padding:64px 22px}
 /* Variante 1: chispa dorada (diamante mini) */
 #globalPart .gp-spark{
   width:5px;height:5px;
-  background:linear-gradient(135deg, #d6d3ba, #b8922a);
+  background:linear-gradient(135deg, #fcebf2, #b8922a);
   border-radius:1px;
   transform:rotate(45deg);
-  box-shadow:0 0 6px rgba(235,224,169,.85), 0 0 12px rgba(235,224,169,.45);
+  box-shadow:0 0 6px rgba(252,220,234,.85), 0 0 12px rgba(252,220,234,.45);
 }
 /* Variante 2: hoja olivo (elipse alargada) */
 #globalPart .gp-leaf{
@@ -115,7 +115,7 @@ section{padding:64px 22px}
 /* Variante 3: punto cremoso (motita de luz) */
 #globalPart .gp-dot{
   width:4px;height:4px;
-  background:radial-gradient(circle, #ffffff 0%, #d6d3ba 60%, transparent 100%);
+  background:radial-gradient(circle, #ffffff 0%, #fcebf2 60%, transparent 100%);
   border-radius:50%;
   box-shadow:0 0 8px rgba(255,255,255,.5);
 }
@@ -567,9 +567,9 @@ section{padding:64px 22px}
   content:'';position:absolute;pointer-events:none;
   inset:0;z-index:0;
   background:
-    radial-gradient(ellipse 60% 40% at 0% 50%, rgba(136,158,101,.16) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(136,158,101,.16) 0%, transparent 60%),
-    radial-gradient(ellipse 90% 50% at 50% 50%, rgba(235,224,169,.22) 0%, transparent 65%);
+    radial-gradient(ellipse 60% 40% at 0% 50%, rgba(226,140,180,.16) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 50%, rgba(226,140,180,.16) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 50% at 50% 50%, rgba(252,220,234,.22) 0%, transparent 65%);
 }
 #location::after{
   content:'';position:absolute;pointer-events:none;
@@ -774,8 +774,8 @@ section{padding:64px 22px}
 /* ── ITINERARY — CAMINO EN S CON MOVIMIENTO ───────────── */
 #itinerary{
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(136,158,101,.10) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 100%, rgba(235,224,169,.22) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 0%, rgba(226,140,180,.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(252,220,234,.22) 0%, transparent 60%),
     linear-gradient(180deg, var(--ink) 0%, #fbf8e8 50%, var(--ink) 100%);
   overflow:hidden;position:relative;
 }
@@ -784,7 +784,7 @@ section{padding:64px 22px}
   content:'';position:absolute;
   left:50%;top:18%;width:340px;height:340px;
   transform:translateX(-50%);
-  background:radial-gradient(circle, rgba(136,158,101,.14) 0%, transparent 65%);
+  background:radial-gradient(circle, rgba(226,140,180,.14) 0%, transparent 65%);
   filter:blur(40px);pointer-events:none;z-index:0;
   animation:itinAura 9s ease-in-out infinite;
 }
@@ -984,11 +984,11 @@ section{padding:64px 22px}
 /* #family — "jardín en niebla" — bokeh orgánico de orbes dispersos en toda la sección */
 #family{
   background:
-    radial-gradient(circle 280px at 12% 8%,  rgba(235,224,169,.45) 0%, transparent 70%),
-    radial-gradient(circle 220px at 88% 22%, rgba(136,158,101,.20) 0%, transparent 70%),
+    radial-gradient(circle 280px at 12% 8%,  rgba(252,220,234,.45) 0%, transparent 70%),
+    radial-gradient(circle 220px at 88% 22%, rgba(226,140,180,.20) 0%, transparent 70%),
     radial-gradient(circle 320px at 30% 48%, rgba(212,197,178,.32) 0%, transparent 75%),
-    radial-gradient(circle 260px at 86% 62%, rgba(235,224,169,.38) 0%, transparent 72%),
-    radial-gradient(circle 240px at 18% 82%, rgba(136,158,101,.18) 0%, transparent 72%),
+    radial-gradient(circle 260px at 86% 62%, rgba(252,220,234,.38) 0%, transparent 72%),
+    radial-gradient(circle 240px at 18% 82%, rgba(226,140,180,.18) 0%, transparent 72%),
     radial-gradient(circle 200px at 70% 92%, rgba(138,0,67,0.16)  0%, transparent 75%),
     linear-gradient(180deg, #fcf8e6 0%, var(--ink) 50%, #faf3d8 100%);
   overflow:hidden;position:relative;
@@ -997,9 +997,9 @@ section{padding:64px 22px}
   content:'';position:absolute;pointer-events:none;
   inset:0;z-index:0;
   background:
-    radial-gradient(circle 90px at 50% 30%, rgba(235,224,169,.55) 0%, transparent 70%),
-    radial-gradient(circle 70px at 25% 70%, rgba(235,224,169,.4)  0%, transparent 70%),
-    radial-gradient(circle 110px at 78% 80%, rgba(235,224,169,.3) 0%, transparent 75%);
+    radial-gradient(circle 90px at 50% 30%, rgba(252,220,234,.55) 0%, transparent 70%),
+    radial-gradient(circle 70px at 25% 70%, rgba(252,220,234,.4)  0%, transparent 70%),
+    radial-gradient(circle 110px at 78% 80%, rgba(252,220,234,.3) 0%, transparent 75%);
   filter:blur(8px);
   animation:famDrift 18s ease-in-out infinite alternate;
 }
@@ -1210,7 +1210,7 @@ section{padding:64px 22px}
   margin-left:-100px;margin-top:-140px;
   border-radius:18px;
   overflow:hidden;
-  border:2px solid rgba(235,224,169,.55);
+  border:2px solid rgba(252,220,234,.55);
   box-shadow:
     0 18px 50px -10px rgba(138,0,67,0.61),
     0 0 0 1px rgba(255,255,255,.6) inset;
@@ -1260,13 +1260,13 @@ section{padding:64px 22px}
   inset:0;z-index:0;
   background:
     radial-gradient(ellipse 60% 40% at 0% 0%,   rgba(138,0,67,0.24)  0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(136,158,101,.20) 0%, transparent 60%);
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(226,140,180,.20) 0%, transparent 60%);
 }
 #rsvp::after{
   content:'';position:absolute;pointer-events:none;
   left:50%;bottom:-20%;width:520px;height:520px;
   transform:translateX(-50%);
-  background:radial-gradient(circle, rgba(235,224,169,.55) 0%, rgba(235,224,169,.18) 35%, transparent 65%);
+  background:radial-gradient(circle, rgba(252,220,234,.55) 0%, rgba(252,220,234,.18) 35%, transparent 65%);
   filter:blur(10px);
   animation:rsvpGlow 7s ease-in-out infinite;
   z-index:0;
@@ -1435,21 +1435,21 @@ section{padding:64px 22px}
 #album::before{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
   background:
-    radial-gradient(circle at 15% 18%, rgba(235,224,169,.45) 0%, transparent 35%),
-    radial-gradient(circle at 88% 22%, rgba(136,158,101,.18) 0%, transparent 38%),
+    radial-gradient(circle at 15% 18%, rgba(252,220,234,.45) 0%, transparent 35%),
+    radial-gradient(circle at 88% 22%, rgba(226,140,180,.18) 0%, transparent 38%),
     radial-gradient(circle at 78% 78%, rgba(212,197,178,.32) 0%, transparent 40%),
     radial-gradient(circle at 18% 82%, rgba(138,0,67,0.14) 0%, transparent 42%),
-    radial-gradient(circle at 50% 50%, rgba(235,224,169,.18) 0%, transparent 55%);
+    radial-gradient(circle at 50% 50%, rgba(252,220,234,.18) 0%, transparent 55%);
   filter:blur(2px);
 }
 #album::after{
   content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
   background:
     repeating-linear-gradient(135deg,
-      rgba(136,158,101,.0) 0px,
-      rgba(136,158,101,.0) 80px,
-      rgba(136,158,101,.04) 80px,
-      rgba(136,158,101,.04) 81px);
+      rgba(226,140,180,.0) 0px,
+      rgba(226,140,180,.0) 80px,
+      rgba(226,140,180,.04) 80px,
+      rgba(226,140,180,.04) 81px);
 }
 #album > *{position:relative;z-index:1}
 .alb-sub{text-align:center;font-size:16px;color:var(--cream);opacity:.82;line-height:1.65;font-weight:500;margin:14px 0 28px}
@@ -1545,7 +1545,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 .gline::after{
   content:'';position:absolute;top:0;left:-100px;
   width:80px;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(213,219,165,.85),transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,236,190,.85),transparent);
   animation:glineSweep 5s ease-in-out infinite;
   pointer-events:none;
 }
@@ -1862,7 +1862,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
    CITA NERUDA — editorial, tonos cálidos
    ═══════════════════════════════════════════════════════ */
 #neruda{
-  background:linear-gradient(180deg, #f7ebd2 0%, #efdfb8 60%, #e8d3a4 100%);
+  background:linear-gradient(180deg, #fff4f8 0%, #fde6ef 60%, #fadbe8 100%);
   padding:72px 28px 80px;text-align:center;
   position:relative;overflow:hidden;
 }
@@ -1990,7 +1990,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
    FOTOS FINALES — galería simple antes del footer
    ═══════════════════════════════════════════════════════ */
 #fotos-final{
-  background:linear-gradient(180deg, var(--ink2) 0%, #f0e3c0 100%);
+  background:linear-gradient(180deg, var(--ink2) 0%, #fde8f0 100%);
   padding:64px 22px 56px;text-align:center;
 }
 .ff-grid{
@@ -2270,6 +2270,53 @@ body.in-hero #globalPart{opacity:0}
 .g-glow .g-glow{animation:none}
 @media(prefers-reduced-motion:reduce){.g-glow{animation:none;filter:drop-shadow(0 0 3px rgba(212,175,55,.45))}}
 
+
+/* ── FONDOS: sin beige — rubor rosado y blanco ── */
+#calendar,#gifts,#itinerary,#family{background:linear-gradient(180deg,#FFF7FA 0%,#FDEAF2 50%,#FFF7FA 100%)!important}
+#countdown{background:linear-gradient(180deg,#FFFFFF 0%,#FDEFF5 100%)!important}
+#neruda{background:linear-gradient(180deg,#FFF9FB 0%,#FCE6EF 60%,#FADCE9 100%)!important}
+
+/* ══ ORO EN 4 EFECTOS DISTINTOS ══════════════════════════════
+   1) Textos: barrido metálico (goldSweep, ya aplicado a títulos/etiquetas)
+   2) Botones dorados: lámina metálica + destello diagonal que cruza
+   3) Líneas, hairlines y contornos: luz que recorre la línea
+   4) Íconos, medallones y marcos: halo dorado que respira (+ chispa titilante)
+   ═════════════════════════════════════════════════════════ */
+/* 2 — botones dorados metálicos */
+.btn-gold,.rsvp-btn{
+  background:linear-gradient(135deg,#7a5a0e 0%,#b8922a 22%,#f6e3a1 45%,#d4af37 55%,#a07c1a 78%,#6e500c 100%)!important;
+  background-size:200% 200%!important;color:#3a1c0f!important;border:1px solid #e9cf7a!important;
+  text-shadow:0 1px 0 rgba(255,246,210,.6);font-weight:700!important;
+  box-shadow:0 6px 22px rgba(184,146,42,.35),inset 0 1px 0 rgba(255,250,225,.75),inset 0 -1px 0 rgba(110,80,12,.45)!important;
+  animation:goldFoil 6s ease-in-out infinite!important;position:relative;overflow:hidden}
+.btn-gold svg,.rsvp-btn svg{stroke:#3a1c0f}
+.btn-gold::after,.rsvp-btn::after{content:'';position:absolute;top:-50%;left:-60%;width:38%;height:200%;pointer-events:none;
+  background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,0) 20%,rgba(255,255,255,.75) 50%,rgba(255,255,255,0) 80%,transparent 100%);
+  transform:rotate(18deg);animation:goldGlint 3.8s ease-in-out infinite}
+@keyframes goldFoil{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes goldGlint{0%,55%{left:-60%}85%,100%{left:130%}}
+/* 3 — luz que recorre líneas y contornos */
+.gline{height:1.5px!important;width:90px!important;background:linear-gradient(90deg,transparent,#b8922a 25%,#f6e3a1 50%,#b8922a 75%,transparent)!important}
+.gline::after{background:linear-gradient(90deg,transparent,rgba(255,250,220,1),transparent)!important;width:40px!important;animation:glineSweep 3.6s ease-in-out infinite!important}
+.h-div::before,.h-div::after,.h-name-wind-line,.h-scroll-line{background-image:linear-gradient(90deg,transparent,#b8922a,#fff2bf,#b8922a,transparent)!important;background-size:250% 100%!important;animation:lineTravel 4s linear infinite!important}
+@keyframes lineTravel{0%{background-position:150% 0}100%{background-position:-150% 0}}
+.loc-card,.alb-qr-frame,.rsvp-card,.cal-month,.gf-card,.lv-body svg rect{animation:edgeShine 5s ease-in-out infinite}
+@keyframes edgeShine{0%,100%{box-shadow:0 0 0 1px rgba(212,175,55,.18),0 8px 24px rgba(184,146,42,.08)}50%{box-shadow:0 0 0 1px rgba(232,200,100,.55),0 0 18px rgba(212,175,55,.28),0 8px 24px rgba(184,146,42,.12)}}
+/* 4 — halo que respira en íconos/medallones (g-glow) + chispa titilante en puntos */
+@keyframes gGlowSoft{0%,100%{filter:drop-shadow(0 0 1px rgba(212,175,55,.3))}50%{filter:drop-shadow(0 0 6px rgba(240,205,100,.75)) drop-shadow(0 0 2px rgba(255,240,190,.8))}}
+.h-orbit span,.cd-dot,.loc-dot,.tl-dot,.h-div-dot{animation:goldTwinkle 2.6s ease-in-out infinite}
+.h-orbit span:nth-child(2n),.tl-row:nth-child(2n) .tl-dot{animation-delay:-1.3s}
+@keyframes goldTwinkle{0%,100%{box-shadow:0 0 6px 1px rgba(212,175,55,.45);filter:brightness(1)}50%{box-shadow:0 0 14px 4px rgba(255,226,140,.85);filter:brightness(1.35)}}
+
+/* ── LÍNEA S DEL ITINERARIO: brillo premium que baja por el camino ── */
+.tl-svg-path{filter:drop-shadow(0 0 3px rgba(212,175,55,.55))}
+.tl-mask-use{stroke:#fff!important;stroke-width:6!important}
+.tl-shine{fill:none;stroke:#fff6d0;stroke-width:3.4;stroke-linecap:round;stroke-dasharray:4 96;
+  filter:drop-shadow(0 0 4px rgba(255,236,170,.95)) drop-shadow(0 0 8px rgba(212,175,55,.8));animation:tlShineRun 5.5s linear infinite}
+.tl-shine-2{stroke:#ffd6e8;stroke-dasharray:2.5 97.5;animation-duration:8s;animation-delay:-3s;opacity:.85}
+@keyframes tlShineRun{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.tl-shine,.btn-gold,.rsvp-btn,.btn-gold::after,.rsvp-btn::after,.gline::after,.loc-card,.alb-qr-frame,.rsvp-card,.cal-month,.gf-card{animation:none!important}}
+
 /* ── FUNDIDO UNIFORME ENTRE SECCIONES ── cada sección se superpone 140px sobre la anterior
    y su borde superior se disuelve con máscara (curva de 9 paradas): cruce suave sin importar el contraste */
 .main-wrap{--seam:140px}
@@ -2462,7 +2509,7 @@ body.in-hero #globalPart{opacity:0}
   <div class="cd-wave-top" aria-hidden="true">
     <svg viewBox="0 0 800 50" preserveAspectRatio="none">
       <path d="M0,25 Q100,5 200,25 T400,25 T600,25 T800,25" fill="none" stroke="rgba(212,0,103,0.3)" stroke-width="1"/>
-      <path d="M0,32 Q100,14 200,32 T400,32 T600,32 T800,32" fill="none" stroke="rgba(213,219,165,.13)" stroke-width=".8"/>
+      <path d="M0,32 Q100,14 200,32 T400,32 T600,32 T800,32" fill="none" stroke="rgba(255,236,190,.13)" stroke-width=".8"/>
     </svg>
   </div>
 
@@ -2528,7 +2575,7 @@ body.in-hero #globalPart{opacity:0}
   <div class="cd-wave-bot" aria-hidden="true">
     <svg viewBox="0 0 800 50" preserveAspectRatio="none">
       <path d="M0,25 Q100,5 200,25 T400,25 T600,25 T800,25" fill="none" stroke="rgba(212,0,103,0.3)" stroke-width="1"/>
-      <path d="M0,18 Q100,36 200,18 T400,18 T600,18 T800,18" fill="none" stroke="rgba(213,219,165,.13)" stroke-width=".8"/>
+      <path d="M0,18 Q100,36 200,18 T400,18 T600,18 T800,18" fill="none" stroke="rgba(255,236,190,.13)" stroke-width=".8"/>
     </svg>
   </div>
 </section>
@@ -2718,6 +2765,9 @@ body.in-hero #globalPart{opacity:0}
       </defs>
       <path class="tl-svg-bg"   id="tlPathBg"/>
       <path class="tl-svg-path" id="tlPath"/>
+      <mask id="tlMask" maskUnits="userSpaceOnUse"><use href="#tlPath" class="tl-mask-use"/></mask>
+      <path class="tl-shine" id="tlShine" pathLength="100" mask="url(#tlMask)"/>
+      <path class="tl-shine tl-shine-2" id="tlShine2" pathLength="100" mask="url(#tlMask)"/>
     </svg>
 
     
@@ -2728,6 +2778,18 @@ body.in-hero #globalPart{opacity:0}
     <div class="tl-row" data-side="right">
       <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
       <div class="tl-row-inner"><p class="tl-t">7:30 PM</p><p class="tl-ev">Recepción</p><p class="tl-de">Five Star Banquet</p></div>
+    </div>
+    <div class="tl-row" data-side="left">
+      <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+      <div class="tl-row-inner"><p class="tl-t">· · ·</p><p class="tl-ev">Por confirmar</p></div>
+    </div>
+    <div class="tl-row" data-side="right">
+      <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+      <div class="tl-row-inner"><p class="tl-t">· · ·</p><p class="tl-ev">Por confirmar</p></div>
+    </div>
+    <div class="tl-row" data-side="left">
+      <div class="tl-orn"></div><div class="tl-pulse"></div><div class="tl-dot"></div>
+      <div class="tl-row-inner"><p class="tl-t">· · ·</p><p class="tl-ev">Por confirmar</p></div>
     </div>
   </div>
 </section>
@@ -3005,18 +3067,18 @@ function launchPage() {
    dando sensación de app inmersiva sin bordes de color ajenos. */
 const SECTION_BAR_COLORS = {
   hero:          '#f9eecf',  /* base del gradiente del hero */
-  neruda:        '#f7ebd2',  /* top del gradiente cita */
-  countdown:     '#faf6e7',  /* --ink2 */
+  neruda:        '#fff4f8',  /* top del gradiente cita */
+  countdown:     '#fff7fa',  /* --ink2 */
   location:      '#ffffff',  /* --ink (top) */
-  calendar:      '#d6d3ba',  /* --ink3 */
+  calendar:      '#fcebf2',  /* --ink3 */
   itinerary:     '#fbfbf6',  /* --ink + tenue sage */
-  gifts:         '#d6d3ba',  /* --ink3 */
+  gifts:         '#fcebf2',  /* --ink3 */
   album:         '#ffffff',  /* --ink */
-  dresscode:     '#faf6e7',  /* --ink2 */
+  dresscode:     '#fff7fa',  /* --ink2 */
   family:        '#fcf8e6',  /* top del gradiente familia */
   rsvp:          '#ffffff',  /* --ink (top) */
-  'fotos-final': '#faf6e7',  /* --ink2 */
-  footer:        '#faf6e7'   /* --ink2 */
+  'fotos-final': '#fff7fa',  /* --ink2 */
+  footer:        '#fff7fa'   /* --ink2 */
 };
 let __themeSyncStarted = false;
 function setBarColor(hex){
@@ -3199,9 +3261,9 @@ function spawnParticles() {
     Object.assign(el.style, {
       width:  sz + 'px',
       height: sz + 'px',
-      background: `radial-gradient(circle,rgba(213,219,165,${brt.toFixed(2)}) 0%,rgba(212,0,103,${(brt*.7).toFixed(2)}) 55%,transparent 85%)`,
+      background: `radial-gradient(circle,rgba(255,236,190,${brt.toFixed(2)}) 0%,rgba(212,0,103,${(brt*.7).toFixed(2)}) 55%,transparent 85%)`,
       borderRadius: '50%',
-      filter: `drop-shadow(0 0 4px rgba(212,0,103,${(brt*.85).toFixed(2)})) drop-shadow(0 0 10px rgba(213,219,165,${(brt*.4).toFixed(2)}))`,
+      filter: `drop-shadow(0 0 4px rgba(212,0,103,${(brt*.85).toFixed(2)})) drop-shadow(0 0 10px rgba(255,236,190,${(brt*.4).toFixed(2)}))`,
       opacity: 0,
     });
     c.appendChild(el);
@@ -4059,6 +4121,14 @@ function toast(msg) {
     }
   }
   if(document.readyState==='complete')setTimeout(scan,300); else window.addEventListener('load',function(){setTimeout(scan,300);});
+})();
+
+/* La S del itinerario: los destellos copian el trazo que dibuja el scroll */
+(function(){
+  var p=document.getElementById('tlPath'),a=document.getElementById('tlShine'),b=document.getElementById('tlShine2');
+  if(!p||!a)return;
+  function sync(){var d=p.getAttribute('d');if(d){a.setAttribute('d',d);b&&b.setAttribute('d',d);}}
+  sync(); new MutationObserver(sync).observe(p,{attributes:true,attributeFilter:['d']});
 })();
 </script>
 </body>

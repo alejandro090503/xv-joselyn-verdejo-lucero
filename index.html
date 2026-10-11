@@ -2242,6 +2242,34 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 #globalPart{transition:opacity .7s ease}
 body.in-hero #globalPart{opacity:0}
 
+
+/* ── HERO UPGRADE: composición compacta en cartela + paralaje por giroscopio ── */
+.h-cnt{position:relative;padding:34px 30px 30px;isolation:isolate;transition:transform .2s ease-out}
+.h-cnt::before{content:'';position:absolute;inset:-6px -14px;z-index:-1;border-radius:50% / 46%;
+  background:radial-gradient(ellipse at center,rgba(255,255,255,.97) 0%,rgba(255,255,255,.9) 48%,rgba(255,247,251,.6) 68%,rgba(255,255,255,0) 80%)}
+.h-we{font-size:14px;letter-spacing:7px;margin-bottom:0;padding:6px 18px!important;margin-left:0!important;margin-right:0!important}
+.h-div{margin:8px 0 2px;max-width:170px}
+.h-clip{padding:0}
+.h-name{font-size:clamp(78px,22vw,104px);line-height:1.08}
+.h-date-wrap{margin-top:14px}
+.h-date-row{display:flex;align-items:center;justify-content:center;gap:14px}
+.h-date-day{font-size:56px;margin:0;padding:0 14px!important;margin-left:0!important;margin-right:0!important;
+  border-left:1.5px solid rgba(212,0,103,.55);border-right:1.5px solid rgba(212,0,103,.55);line-height:.95}
+.h-date{display:block;font-size:13px;letter-spacing:5px;line-height:1.3;min-width:72px;text-align:right}
+.h-date-yr{text-align:left}
+.h-date::before,.h-date::after{display:none}
+.h-city-wrap{margin-top:16px;max-width:240px}
+.h-city{font-size:13px;letter-spacing:5px}
+.h-we,.h-name,.h-date,.h-city{text-shadow:0 0 14px rgba(255,255,255,.95),0 0 2px rgba(255,255,255,.9)}
+.h-glow,.h-rings{will-change:auto}
+
+
+/* ── BRILLO SUAVE EN TODO LO DORADO (marcado automático por JS: .g-glow) ── */
+@keyframes gGlowSoft{0%,100%{filter:drop-shadow(0 0 1.5px rgba(212,175,55,.35))}50%{filter:drop-shadow(0 0 5px rgba(232,196,90,.7))}}
+.g-glow{animation:gGlowSoft 4.2s ease-in-out infinite}
+.g-glow .g-glow{animation:none}
+@media(prefers-reduced-motion:reduce){.g-glow{animation:none;filter:drop-shadow(0 0 3px rgba(212,175,55,.45))}}
+
 /* ── FUNDIDO UNIFORME ENTRE SECCIONES ── cada sección se superpone 140px sobre la anterior
    y su borde superior se disuelve con máscara (curva de 9 paradas): cruce suave sin importar el contraste */
 .main-wrap{--seam:140px}
@@ -2389,8 +2417,11 @@ body.in-hero #globalPart{opacity:0}
     </div>
 
     <div class="h-date-wrap" id="hDate">
-      <p class="h-date-day">23</p>
-      <p class="h-date">Abril 2027</p>
+      <div class="h-date-row">
+        <p class="h-date">Abril</p>
+        <p class="h-date-day">23</p>
+        <p class="h-date h-date-yr">2027</p>
+      </div>
       <div class="h-city-wrap">
         <p class="h-city">Nueva York · NY</p>
       </div>
@@ -3953,17 +3984,42 @@ function toast(msg) {
   });
 })();
 
-/* Hero vivo — los anillos responden al dedo/mouse, al giro del teléfono y al scroll */
+/* Hero vivo — giroscopio del celular (permiso iOS en el primer toque), dedo/mouse y scroll; capas con paralaje distinto */
 (function(){
-  var rings=document.getElementById('hRings'),hero=document.getElementById('hero');
-  if(!rings||!hero)return;
-  var tx=0,ty=0,sc=0,raf=0;
-  function apply(){raf=0;rings.style.transform='translate(calc(-50% + '+tx+'px),calc(-50% + '+ty+'px)) rotate('+(sc*.06)+'deg) scale('+(1+Math.min(sc,600)/2400)+')';}
-  function q(){if(!raf)raf=requestAnimationFrame(apply);}
-  hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();tx=((e.clientX-r.left)/r.width-.5)*22;ty=((e.clientY-r.top)/r.height-.5)*22;q();},{passive:true});
+  var hero=document.getElementById('hero'),rings=document.getElementById('hRings'),
+      glow=hero&&hero.querySelector('.h-glow'),cnt=document.getElementById('hCnt'),
+      arcs=hero?hero.querySelectorAll('.h-arch'):[];
+  if(!hero||!rings)return;
+  var tx=0,ty=0,cx=0,cy=0,sc=0,raf=0,base=null;
+  function loop(){
+    cx+=(tx-cx)*.08; cy+=(ty-cy)*.08;
+    var k=1+Math.min(sc,600)/2400, r=sc*.06;
+    rings.style.transform='translate(calc(-50% + '+(cx*1.2)+'px),calc(-50% + '+(cy*1.2)+'px)) rotate('+(r+cx*.4)+'deg) scale('+k+')';
+    if(glow)glow.style.transform='translate(calc(-50% + '+(cx*.5)+'px),calc(-50% + '+(cy*.5)+'px))';
+    if(cnt)cnt.style.transform='translate('+(-cx*.35)+'px,'+(-cy*.35)+'px)';
+    for(var i=0;i<arcs.length;i++)arcs[i].style.translate=(cx*(i?-.6:.6))+'px '+(cy*.3)+'px';
+    raf=(Math.abs(tx-cx)+Math.abs(ty-cy)>.05)?requestAnimationFrame(loop):0;
+  }
+  function q(){if(!raf)raf=requestAnimationFrame(loop);}
+  function onOri(e){
+    if(e.gamma==null)return;
+    if(!base)base={b:e.beta,g:e.gamma};
+    var g=e.gamma-base.g,bb=e.beta-base.b;
+    tx=Math.max(-18,Math.min(18,g*.9)); ty=Math.max(-18,Math.min(18,bb*.7)); q();
+  }
+  function enableGyro(){
+    if(window.DeviceOrientationEvent&&typeof DeviceOrientationEvent.requestPermission==='function'){
+      DeviceOrientationEvent.requestPermission().then(function(st){if(st==='granted')window.addEventListener('deviceorientation',onOri,{passive:true});}).catch(function(){});
+    } else { window.addEventListener('deviceorientation',onOri,{passive:true}); }
+  }
+  if(window.DeviceOrientationEvent&&typeof DeviceOrientationEvent.requestPermission==='function'){
+    document.addEventListener('click',enableGyro,{once:true,capture:true});
+    document.addEventListener('touchend',enableGyro,{once:true,capture:true});
+  } else enableGyro();
+  setInterval(function(){base=null;},12000); /* recalibra la posición neutra */
+  hero.addEventListener('pointermove',function(e){if(e.pointerType==='touch')return;var r=hero.getBoundingClientRect();tx=((e.clientX-r.left)/r.width-.5)*28;ty=((e.clientY-r.top)/r.height-.5)*28;q();},{passive:true});
   hero.addEventListener('pointerleave',function(){tx=ty=0;q();});
-  window.addEventListener('deviceorientation',function(e){if(e.gamma==null)return;tx=Math.max(-14,Math.min(14,e.gamma*.5));ty=Math.max(-14,Math.min(14,(e.beta-45)*.4));q();},{passive:true});
-  window.addEventListener('scroll',function(){sc=window.scrollY||0;if(sc<1200)q();},{passive:true});
+  window.addEventListener('scroll',function(){sc=window.scrollY||0;if(sc<1200){tx+=0;q();cx+=.06;}},{passive:true});
 })();
 
 /* Partículas globales ocultas mientras la portada está en pantalla */
@@ -3971,6 +4027,38 @@ function toast(msg) {
   var hero=document.getElementById('hero'); if(!hero)return;
   function chk(){document.body.classList.toggle('in-hero',(window.scrollY||0)<hero.offsetHeight*.75);}
   chk(); window.addEventListener('scroll',chk,{passive:true}); window.addEventListener('resize',chk);
+})();
+
+/* Brillo suave en cada detalle dorado: detecta color/borde/stroke/fill/fondo dorado y lo marca */
+(function(){
+  function gold(c){
+    var m=c&&c.match(/rgba?\(([\d.]+),\s*([\d.]+),\s*([\d.]+)(?:,\s*([\d.]+))?/); if(!m)return false;
+    if(m[4]!==undefined&&+m[4]<.15)return false;
+    var r=m[1]/255,g=m[2]/255,b=m[3]/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b),d=mx-mn; if(d<.18||mx<.3)return false;
+    var h=mx===r?((g-b)/d)%6:mx===g?(b-r)/d+2:(r-g)/d+4; h*=60; if(h<0)h+=360;
+    return h>=36&&h<=54&&d/mx>.35;
+  }
+  function scan(){
+    var els=document.querySelectorAll('.main-wrap *, #musicBtn *'),n=0;
+    for(var i=0;i<els.length&&n<400;i++){
+      var e=els[i]; if(e.closest('.g-glow')||e.closest('#lvRain'))continue;
+      var cs=getComputedStyle(e),hit=false;
+      if(e instanceof SVGElement){
+        hit=gold(cs.stroke)||gold(cs.fill)||gold(e.getAttribute('stop-color')||'');
+        if(hit){var sv=e.ownerSVGElement||e; if(!sv.closest('.g-glow')){sv.classList.add('g-glow');n++;} continue;}
+        continue;
+      }
+      var txt=e.childNodes.length&&[].some.call(e.childNodes,function(t){return t.nodeType===3&&t.textContent.trim();});
+      hit=(txt&&(gold(cs.color)||gold(cs.webkitTextFillColor)))||
+          (parseFloat(cs.borderTopWidth)+parseFloat(cs.borderBottomWidth)+parseFloat(cs.borderLeftWidth)>0&&(gold(cs.borderTopColor)||gold(cs.borderLeftColor)||gold(cs.borderBottomColor)))||
+          gold(cs.backgroundColor)||/(184, ?146, ?42|212, ?175, ?55|138, ?104, ?18|161, ?122, ?22)/.test(cs.backgroundImage);
+      if(!hit){ ['::before','::after'].forEach(function(ps){var p=getComputedStyle(e,ps); if(p.content&&p.content!=='none'&&(gold(p.backgroundColor)||gold(p.borderTopColor)&&parseFloat(p.borderTopWidth)>0||/(184, ?146, ?42|212, ?175, ?55)/.test(p.backgroundImage)||gold(p.color)))hit=true;}); }
+      if(hit&&!txt&&e.getBoundingClientRect().width*e.getBoundingClientRect().height>60000&&!(parseFloat(cs.borderTopWidth)>0))hit=false;
+      if(hit&&cs.animationName.indexOf('goldSweep')<0&&!e.matches('.lv-title')){e.classList.add('g-glow');n++;}
+      else if(hit){/* ya tiene barrido: suma solo el resplandor */ e.style.filter='drop-shadow(0 0 5px rgba(212,175,55,.45))';}
+    }
+  }
+  if(document.readyState==='complete')setTimeout(scan,300); else window.addEventListener('load',function(){setTimeout(scan,300);});
 })();
 </script>
 </body>
